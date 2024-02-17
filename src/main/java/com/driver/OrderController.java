@@ -242,7 +242,7 @@ class OrderRepo {
         {
             String s=a.get(i);
             Order o=or.get(s);
-            if(o.getDeliveryTime()<x)
+            if(o.getDeliveryTime()>x)
                 c++;
         }
         return c;
