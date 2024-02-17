@@ -230,6 +230,13 @@ class OrderRepo {
         if(dr.containsKey(partnerId))
             dr.remove(partnerId);
         if(odr.containsKey(partnerId)) {
+            List<String> a=odr.get(partnerId);
+            for(int i=0;i<a.size();i++)
+            {
+                String s=a.get(i);
+                if(!oul.contains(s))
+                    oul.add(s);
+            }
             odr.remove(partnerId);
         }
     }
@@ -253,28 +260,27 @@ class OrderRepo {
         String  ans=null;
         if(odr.containsKey(partnerId)){
             List<String> a=odr.get(partnerId);
-            int c=Integer.MAX_VALUE;
+            int c=Integer.MIN_VALUE;
             for(int i=0;i<a.size();i++)
             {
                 String s=a.get(i);
                 Order o=or.get(s);
-                c=Math.min(o.getDeliveryTime(),c);
+                c=Math.max(o.getDeliveryTime(),c);
 
             }
             int x=  c/60;
             if(x<10)
             {
-                ans +="0" + Integer.toString(x);
+                ans +="0";
             }
-            else
                 ans += Integer.toString(x);
             ans +=":";
             x =c%60;
             if(x<10)
             {
-                ans +="0" + Integer.toString(x);
+                ans +="0" ;
             }
-            else
+
                 ans += Integer.toString(x);
         }
         return   ans;
