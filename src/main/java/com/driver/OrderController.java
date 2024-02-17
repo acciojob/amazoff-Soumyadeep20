@@ -259,6 +259,7 @@ class OrderRepo {
     public String getLastDeliveryTimeByPartnerId(String partnerId) {
         String  ans=null;
         if(odr.containsKey(partnerId)){
+            ans="";
             List<String> a=odr.get(partnerId);
             int c=Integer.MIN_VALUE;
             for(int i=0;i<a.size();i++)
@@ -273,7 +274,7 @@ class OrderRepo {
             {
                 ans +="0";
             }
-                ans += Integer.toString(x);
+            ans += Integer.toString(x);
             ans +=":";
             x =c%60;
             if(x<10)
